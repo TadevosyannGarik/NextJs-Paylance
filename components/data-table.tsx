@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import * as React from "react"
 import { Input } from "@/components/ui/input"
 import { Trash } from "lucide-react"
+import { useConfirm } from "@/hooks/use-confirm"
 
 
 interface DataTableProps<TData, TValue> {
@@ -17,10 +18,13 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({ columns, data, filterKey, onDelete, disabled }: DataTableProps<TData, TValue>) {
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-        []
+    const [ConfirmDialog, confirm] = useConfirm(
+        "Are you sure ?",
+        "You are about to perform a bulk delete."
     )
+
+    const [sorting, setSorting] = React.useState<SortingState>([])
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
     const [rowSelection, setRowSelection] = React.useState({})
 
     
@@ -44,6 +48,7 @@ export function DataTable<TData, TValue>({ columns, data, filterKey, onDelete, d
 
     return (
         <div>
+            <ConfirmDialog />
             <div className="flex items-center py-4">
                 <Input
                     placeholder={`Filter ${filterKey}`}
@@ -54,7 +59,19 @@ export function DataTable<TData, TValue>({ columns, data, filterKey, onDelete, d
                     className="max-w-sm"
                 />
                 {table.getFilteredSelectedRowModel().rows.length > 0 && (
-                    <Button variant="outline" className="ml-auto" disabled={disabled}>
+                    <Button 
+                        variant="outline" 
+                        className="ml-auto" 
+                        disabled={disabled}
+                        onClick={ async () => {
+                            const ok = await confirm();
+                            
+                            if (ok) {
+                                onDelete(table.getFilteredSelectedRowModel().rows)
+                                table.resetRowSelection();
+                            }
+                        }}
+                    >
                         <Trash className="size-4 mr-2" />
                         Delete ({table.getSelectedRowModel().rows.length})
                     </Button>
