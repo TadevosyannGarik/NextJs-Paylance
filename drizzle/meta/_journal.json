@@ -15,6 +15,13 @@
       "when": 1715508727550,
       "tag": "0001_graceful_cardiac",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1715606505780,
+      "tag": "0002_first_nova",
+      "breakpoints": true
     }
   ]
 }
