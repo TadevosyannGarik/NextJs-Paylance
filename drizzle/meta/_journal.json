@@ -22,6 +22,13 @@
       "when": 1715606505780,
       "tag": "0002_first_nova",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1715692205490,
+      "tag": "0003_optimal_praxagora",
+      "breakpoints": true
     }
   ]
 }
