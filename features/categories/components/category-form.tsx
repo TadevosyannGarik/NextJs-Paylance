@@ -17,7 +17,7 @@ type FormValues = z.input<typeof formSchema>;
 type Props = {
     id?: string;
     defaultValues?: FormValues;
-    onSubmit: (vakues: FormValues) => void;
+    onSubmit: (values: FormValues) => void;
     onDelete?: () => void;
     disabled?: boolean;
 };
