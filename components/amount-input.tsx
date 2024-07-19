@@ -20,7 +20,7 @@ export const AmountInput = ({ value, onChange, placeholder, disabled }: Props) =
         if (!value) return;
 
         const newValue = parseFloat(value) * -1;
-        onChange(newValue.toString(2));
+        onChange(newValue.toString());
     };
 
     return (
