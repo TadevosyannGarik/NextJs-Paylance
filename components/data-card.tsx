@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 import { VariantProps, cva } from "class-variance-authority";
-import { cn, formatCurrency, formatPersentage } from "@/lib/utils";
+import { cn, formatCurrency, formatPercentage } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CountUp } from "@/components/count-up";
 import { Skeleton } from "./ui/skeleton";
@@ -73,7 +73,7 @@ export const DataCard = ({ icon: Icon, title, value = 0, variant, dateRange, per
                     />
                 </h1>
                 <p className={cn("text-muted-foreground text-md line-clamp-1", percentageChange > 0 && "text-emerald-500", percentageChange < 0 && "text-red-500")}>
-                    {formatPersentage(percentageChange)} from last period
+                    {formatPercentage(percentageChange, {addPrefix: true})} from last period
                 </p>
             </CardContent>
         </Card>

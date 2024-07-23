@@ -14,7 +14,7 @@ export const useCreateTransaction = () => {
         // @ts-ignore
         mutationFn: async (json) => {
             const response = await client.api.transactions.$post({ json });
-            return response;
+            return await response.json();
         },
         onSuccess: () => {
             toast.success("Transaction created");
