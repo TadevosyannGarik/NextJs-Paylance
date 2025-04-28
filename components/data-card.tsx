@@ -72,15 +72,15 @@ export const DataCard = ({ icon: Icon, title, value = 0, variant, dateRange, per
                         formattingFn={formatCurrency}
                     />
                 </h1>
-                <p className={cn("text-muted-foreground text-md line-clamp-1", percentageChange > 0 && "text-emerald-500", percentageChange < 0 && "text-red-500")}>
-                    {formatPercentage(percentageChange, {addPrefix: true})} from last period
+                <p className={cn('text-muted-foreground text-sm line-clamp-1', percentageChange > 0 && 'text-emerald-500', percentageChange < 0 && 'text-rose-500')}>
+                    {percentageChange !== undefined ? formatPercentage(percentageChange, { addPrefix: true }) : 'Нет данных'} from last period
                 </p>
             </CardContent>
         </Card>
     );
 };
 
-export const DataCarDLoading = () => {
+export const DataCardLoading = () => {
     return (
         <Card className="border-none drop-shadow-sm h-[192px]">
             <CardHeader className="flex flex-row items-center justify-between gap-x-4">
